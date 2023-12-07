@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">   
+    
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Inventario: Halloween</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/styles2.css">
+</head> 
+        
+<body>    
+    <h1 class="animated flip">GESTION DE INVENTARIO</h1>
+    <br><br><br>
+
+    <input class="buscar" type="text" id="search-product" placeholder="Buscar producto por nombre">
+    <br><br>
+
+    <button  class="pulse-button-hover" id="search-button">Buscar Producto</button>
+    <br><br>
+
+        <form id="product-form-events" class="product-form-styles">
+            <label for="product-name">Nombre: </label>
+            <input type="text" id="product-name" required>
+            <label for="product-quantity">Cantidad: </label>
+            <input type="number" id="product-quantity" required>
+            <label for="product-price">Precio: </label>
+            <input type="number" step="0.01" id="product-price" required>
+            <button class="aceptar" id="submit-button" type="submit">Aceptar</button>
+        </form>
+
+    <table id="inventory-table-events" class="inventory-table-styles">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="body-table"></tbody>
+    </table>
+    
+    <script src="scripts/main.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+.animated.flip {
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+    -webkit-animation-name: flip;
+    animation-name: flip;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    }
+    @-webkit-keyframes flip {
+    0% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    }
+    40% {
+    -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    }
+    50% {     
+    -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    80% { 
+    -webkit-transform: perspective(400px) scale3d(.95, .95, .95);
+    transform: perspective(400px) scale3d(.95, .95, .95);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    100% {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    }
+    @keyframes flip {
+    0% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    }
+    40% {
+    -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    }
+    50% {
+    -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    80% {
+    -webkit-transform: perspective(400px) scale3d(.95, .95, .95);
+    transform: perspective(400px) scale3d(.95, .95, .95);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    100% {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    } 
+    
+  
+    button {
+      margin: 15px auto;
+      font-family: "Montserrat";
+      font-size: 20px;
+      color: #ffffff;
+      cursor: pointer;
+      border-radius: 100px;
+      padding: 15px 20px;
+      border: 0px solid #000;   
+      }
+    
+    /* Initiate Auto-Pulse animations */
+    button.pulse-button {
+      animation: borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in;
+    }
+    
+    /* Initiate color change for pulse-on-hover */
+    button.pulse-button-hover {
+      animation: colorShift 10000ms infinite ease-in;
+    }
+    
+    /* Continue animation and add shine on hover */
+    button:hover,
+    button:focus {
+      animation: borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in, hoverShine 200ms;
+    }
+    
+    /* Declate color shifting animation */
+    @keyframes colorShift {
+      0%, 100% {
+          background: #0045e6;
+      }
+      33% {
+        background: #fb3e3e;
+      }
+      66%{
+        background: #0dcc00;
+      }
+    }
+    
+    /* Declare border pulse animation */
+    @keyframes borderPulse {
+      0% {
+        box-shadow: inset 0px 0px 0px 5px rgba(255, 255, 255,.4), 0px 0px 0px 0px rgba(255,255,255,1);
+      }
+      100% {
+        box-shadow: inset 0px 0px 0px 3px rgba(117, 117, 255,.2), 0px 0px 0px 10px rgba(255,255,255,0);
+      }
+    }
+    
+    /* Declare shine on hover animation */
+    @keyframes hoverShine {
+      0%{
+        background-image: linear-gradient(135deg, rgba(255,255,255,.4) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
+      }
+      50%{
+        background-image: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 50%, rgba(255,255,255,0) 100%);
+      }
+      100%{
+        background-image: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,.4) 100%);
+      }
+    }
+    
+  
+  
+  
+    /* Estilo para el botón de borrar */
+  #deleteButton {
+    background-color: #ff00fb; /* Color de fondo rojo, puedes cambiarlo según tu preferencia */
+    color: #ffffff; /* Color del texto blanco, puedes ajustarlo según tus preferencias */
+    padding: 10px 20px; /* Ajusta el relleno según tus necesidades */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados, ajusta según tu preferencia */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+  }
+  
+  #deleteButton:hover {
+    background-color: #cc00b4; /* Color de fondo más oscuro al pasar el ratón */
+  }
+  
+  /* Estilo para el botón de editar */
+  #editButton {
+    background-color: #007bff; /* Color de fondo azul, puedes cambiarlo según tu preferencia */
+    color: #ffffff; /* Color del texto blanco, puedes ajustarlo según tus preferencias */
+    padding: 10px 20px; /* Ajusta el relleno según tus necesidades */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados, ajusta según tu preferencia */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+  }
+  
+  #editButton:hover {
+    background-color: #0056b3; /* Color de fondo más oscuro al pasar el ratón */
+  }
+  
+  /* Keyframes para animar los botones */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Aplicar la animación a ambos botones */
+  #deleteButton, #editButton {
+    animation: pulse 1s infinite; 
+  }

@@ -1,0 +1,186 @@
+@font-face {
+    font-family: 'TiltNeon';
+    src: url('/assets/fonts/TiltNeon-Regular-VariableFont_XROT\,YROT.ttf');
+  }
+
+@font-face {
+    font-family: 'SourceCodePro';
+    src: url('/assets/fonts/SourceCodePro-VariableFont_wght.ttf');
+  }
+
+body{
+    background: rgb(255,255,255);
+    background-image: url(/assets/img/moon-2048727_1280.jpg);
+    text-align: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline');
+h1{
+    font-family: "Bungee Inline", cursive;
+    font-style: italic;
+    text-align: center;
+    font-size: 35px;
+    word-spacing: 3px;
+    color: rgba(144, 231, 249, 0.95);
+    text-shadow: rgb(143, 216, 255) -21px 39px 3px;
+}
+
+
+
+table{
+    margin: 0 auto;
+    padding: 1rem;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+    color: rgb(253, 253, 253);
+    margin-bottom: 10px;
+}
+
+table tr td:first-child {
+  color: rgb(0, 149, 255); 
+}
+
+table tr td::before {
+  color: rgb(0, 255, 255); 
+}
+
+.search{
+    margin-bottom: 1rem;
+}
+
+form{
+    margin-bottom: 1rem;
+}
+
+th{
+    font-family: TiltNeon;
+    background: linear-gradient(rgb(0, 255, 255),rgb(255, 255, 255));
+    padding: 1rem;
+    text-decoration: underline;
+}
+
+.aceptar{
+    background-color: rgb(0, 255, 255);
+    padding: 10px;
+    font-weight: 600;
+    text-decoration: solid;
+    font-family: SourceCodePro;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 17px;
+    margin: 10px;
+}
+
+button{
+    padding: 10px;
+    font-weight: 600;
+    text-decoration: solid;
+    font-family: SourceCodePro;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 17px;
+    margin: 10px;
+}
+
+button:hover{
+  background-color: rgb(181, 181, 181);
+  box-shadow: yellow 0 4px 12px;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+input{
+    background-color: rgb(217, 217, 221);
+    padding: 11px;
+    
+    border-radius: 5px;
+    font-family: SourceCodePro;
+    font-size: 18px;
+    margin: 10px;
+    border: 1px solid rgb(23, 169, 237);
+
+
+}
+
+.buscar{
+    background-color: rgb(217, 217, 221);
+    padding: 11px;
+    border-radius: 5px;
+    font-family: SourceCodePro;
+    font-size: 18px;
+    margin: 10px;
+    width: 70%;
+    border: 1px solid rgb(23, 169, 237);
+}
+
+label{
+  color: rgb(127, 159, 255);
+  font-family: TiltNeon;
+  font-weight: bold;
+  font-size: 20px;
+
+}
+
+tbody{
+    font-family: TiltNeon;
+    font-weight: 650;
+}
+
+th, td {
+    border: 1px solid rgb(23, 169, 237);
+    padding: 1px solid rgb(58, 193, 255);
+    color: #aa00ff;
+    margin: 9px;
+    text-align: center;
+}
+
+.table-inventory tr:hover{
+    background-color: rgb(181, 181, 181);
+}
+
+#editButton{
+    background-color: rgb(0, 255, 255);
+    padding: 10px;
+    font-weight: 600;
+    text-decoration: solid;
+    font-family: SourceCodePro;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 17px;
+    margin: 10px;}
+
+#editButton:hover{
+    background-color:rgb(0, 174, 255)
+}
+
+#editButton:hover {
+    transform: translateY(-1px);  
+} 
+
+#editButton:active {
+    box-shadow: rgb(0, 174, 255) 0 2px 4px;
+    transform: translateY(0);
+}
+
+#deleteButton{
+    background-color: rgb(255, 0, 0);
+    padding: 10px;
+    font-weight: 600;
+    text-decoration: solid;
+    font-family: SourceCodePro;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 17px;
+    margin: 10px;
+  }
