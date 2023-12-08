@@ -1,227 +1,136 @@
-<<<<<<< HEAD
-
 import { Product } from "./products.js";
-
 import { ProductManager } from "./productsManager.js";
- 
-document.getElementById('search-button').addEventListener('click', () => {
 
-    const searchInput = document.getElementById('search-product');
-
-    const searchTerm = searchInput.value;
-
-    const filteredProducts = productManager.searchProduct(searchTerm);
- 
-    updateInventoryTable(filteredProducts);
-
-});
- 
 const productManager = new ProductManager();
- 
-productManager.loadFromLocalStorage();
- 
-updateInventoryTable();
- 
-document.getElementById('product-form-events').
 
-    addEventListener('submit', function (event) {
+function removeFromLocalStorage(productId) {
+  const storedProducts = Object.keys(localStorage).map((key) => {
+    const data = JSON.parse(localStorage.getItem(key));
+    return new Product(data.id, data.nombre, data.cantidad, data.precio);
+  });
 
-        event.preventDefault();
- 
-        const productName = document.getElementById('product-name').value;
+  const index = storedProducts.findIndex(
+    (product) => product.id === productId
+  );
 
-        const productQuantity = parseInt(document.getElementById('product-quantity').value);
-
-        const productPrice = parseFloat(document.getElementById('product-price').value);
- 
-        const newProduct = new Product(Date.now(), productName, productQuantity, productPrice);
- 
-        console.log(newProduct);
- 
-        productManager.addProduct(newProduct);
- 
-        productManager.saveToLocalStorage();
- 
-        this.reset();
- 
-        updateInventoryTable();
-
-        productManager.loadFromLocalStorage();
-
-    });
- 
-function updateInventoryTable(products = productManager.listProducts()) {
-
-    const tableBody = document.getElementById('body-table');
-
-    tableBody.innerHTML = '';
- 
-    products.forEach(product => {
-
-        const row = document.createElement('tr');
-
-        row.innerHTML = `
-
-<td>${product.nombre}</td>
-
-<td>${product.cantidad}</td>
-
-<td>${product.precio}</td>
-
-<td>
-
-<button class="edit-button">Editar</button>
-
-<button class="delete-button">Eliminar</button>
-
-</td>
-
-        `;
-
-        tableBody.appendChild(row);
- 
-        const editButton = row.querySelector(".edit-button");
-
-        const deleteButton = row.querySelector('.delete-button');
- 
-        deleteButton.addEventListener('click', () => {
-
-            productManager.deleteProductById(product.id);
- 
-            removeFromLocalStorage(product.id);
-
-            updateInventoryTable();
-
-        });
- 
-        function removeFromLocalStorage(productId) {
-
-            const storedProducts = Object.keys(localStorage).map(key => {
-
-                const data = JSON.parse(localStorage.getItem(key));
-
-                return new Product(data.id, data.nombre, data.cantidad, data.precio);
-
-            });
- 
-            const index = storedProducts.findIndex(product => product.id === productId);
- 
-            if (index !== -1) {
-
-                storedProducts.splice(index, 1);
-
-                localStorage.removeItem(productId);
-
-            }
-
-        }
- 
-        editButton.addEventListener('click', () => {
-
-            const confirmButton = document.createElement('button');
-
-            confirmButton.textContent = 'Confirmar';
-
-            confirmButton.classList.add('confirm-button');
- 
-            row.querySelector('.edit-button').replaceWith(confirmButton);
- 
-            confirmButton.addEventListener('click', () => {
-
-                const productName = document.getElementById('product-name').value;
-
-                const productQuantity = parseInt(document.getElementById('product-quantity').value);
-
-                const productPrice = parseFloat(document.getElementById('product-price').value);
- 
-                if (productName !== null && productQuantity !== null && productPrice !== null) {
-
-                    const editedProduct = new Product(product.id, productName, parseInt(productQuantity), parseFloat(productPrice));
- 
-                    productManager.updateProductById(product.id, editedProduct);
- 
-                    console.log(editedProduct);
- 
-                    // Guardar cambios en el localStorage
-
-                    productManager.saveToLocalStorage();
- 
-                    // Recargar la página después de confirmar la edición
-
-                    location.reload();
-
-                }
- 
-                confirmButton.replaceWith(editButton);
-
-            });
-
-        });
-
-    });
-
+  if (index !== -1) {
+    storedProducts.splice(index, 1);
+    localStorage.removeItem(productId);
+  }
 }
-=======
-import { Product } from './product.js';
-import { ProductManager } from './productManager.js';
 
-// Instanciar el administrador de productos
-const productManager = new ProductManager();
+function updateInventoryTable(products = productManager.listProducts()) {
+  const tableBody = document.getElementById("body-table");
+  tableBody.innerHTML = "";
 
-// Evento del formularuo para agregar un nuevo producto
+  products.forEach((product) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+<td>${product.nombre}</td>
+<td>${product.cantidad}</td>
+<td>${product.precio}</td>
+<td>
+<button class="edit-button">Editar</button>
+<button class="delete-button">Eliminar</button>
+</td>
+        `;
+    tableBody.appendChild(row);
 
-document.getElementById('product-form-events').addEventListener('submit', function (event){
+    const editButton = row.querySelector(".edit-button");
+    const deleteButton = row.querySelector(".delete-button");
+
+    deleteButton.addEventListener("click", () => {
+      productManager.deleteProductById(product.id);
+
+      removeFromLocalStorage(product.id);
+      updateInventoryTable();
+    });
+
+    editButton.addEventListener("click", () => {
+      const confirmButton = document.createElement("button");
+      confirmButton.textContent = "Confirmar";
+      confirmButton.classList.add("confirm-button");
+
+      row.querySelector(".edit-button").replaceWith(confirmButton);
+
+      confirmButton.addEventListener("click", () => {
+        const productName = document.getElementById("product-name").value;
+        const productQuantity = parseInt(
+          document.getElementById("product-quantity").value
+        );
+        const productPrice = parseFloat(
+          document.getElementById("product-price").value
+        );
+
+        if (
+          productName !== null &&
+          productQuantity !== null &&
+          productPrice !== null
+        ) {
+          const editedProduct = new Product(
+            product.id,
+            productName,
+            parseInt(productQuantity),
+            parseFloat(productPrice)
+          );
+
+          productManager.updateProductById(product.id, editedProduct);
+
+          console.log(editedProduct);
+
+          // Guardar cambios en el localStorage
+          productManager.saveToLocalStorage();
+
+          // Recargar la página después de confirmar la edición
+          location.reload();
+        }
+
+        confirmButton.replaceWith(editButton);
+      });
+    });
+  });
+}
+
+productManager.loadFromLocalStorage();
+
+updateInventoryTable();
+
+document.getElementById("search-button").addEventListener("click", () => {
+  const searchInput = document.getElementById("search-product");
+  const searchTerm = searchInput.value;
+  const filteredProducts = productManager.searchProduct(searchTerm);
+
+  updateInventoryTable(filteredProducts);
+});
+
+document
+  .getElementById("product-form-events")
+  .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    // Obtenemos los valores del formulario
-    const productName = document.getElementById('product-name').value;
-    const productQuantity = parseInt(document.getElementById('product-quantity').value);
-    const productPrice = parseFloat(document.getElementById('product-price').value);
+    const productName = document.getElementById("product-name").value;
+    const productQuantity = parseInt(
+      document.getElementById("product-quantity").value
+    );
+    const productPrice = parseFloat(
+      document.getElementById("product-price").value
+    );
 
-    // Crear una instancia de Product con los valores del formulario
-
-    const newProduct = new Product(Date.now(), productName, productQuantity, productPrice);
+    const newProduct = new Product(
+      Date.now(),
+      productName,
+      productQuantity,
+      productPrice
+    );
 
     console.log(newProduct);
 
-    // Agregar el nuevo producto al administrador de productos
     productManager.addProduct(newProduct);
 
-    // Limpiar el formulario
+    productManager.saveToLocalStorage();
+
     this.reset();
 
-    // Actualizamos la tabla de inventario
-
     updateInventoryTable();
-
-});
-
-// Función para actualizar la tabla de inventario
-function updateInventoryTable() {
-    const tableBody = document.getElementById('body-table');
-    tableBody.innerHTML = '';
-
-    // Obtener la lista de productos del administrador
-    const products = productManager.listProducts();
-
-    // Iterar sobre la lista de productos y agregar filas a la tabla
-    products.forEach(product => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${product.nombre}</td>
-            <td>${product.cantidad}</td>
-            <td>${product.precio}</td>
-            <td>
-                <button id="edit-button">Editar</button>
-                <button id="delete-button">Eliminar</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-
-}
-
-// Llamar a la función inicial para mostrar la tabla del inventario
-updateInventoryTable();
-
->>>>>>> 6fab76843031a129b56340cd531e89dfaf9d77e4
+    productManager.loadFromLocalStorage();
+  });
